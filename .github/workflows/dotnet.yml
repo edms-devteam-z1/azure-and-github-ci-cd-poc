@@ -1,25 +1,31 @@
-name: .NET
+name: .NET build and test
 
 on:
   push:
     branches: [ "main",  "development" ]
   pull_request:
     branches: [ "main", "development" ]
+    
+env:
+  DOTNET_VERSION: '6.0.X'
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    name: build-and-test-window-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
+    - name: Setup .NET Core
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: ${{env.DOTNET_VERSION}}
+        
     - name: Restore dependencies
       run: dotnet restore
+      
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --configuration Release --no-restore
+      
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-restore --verbosity normal
