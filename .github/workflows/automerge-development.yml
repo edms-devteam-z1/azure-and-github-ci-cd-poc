@@ -10,12 +10,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  auto-merge:
+  auto-merge:  
     name: Merge master into development after a PR is merged
     runs-on: ubuntu-latest
     steps:
+      - name: Temporarily disable branch protection
+        uses: benjefferies/branch-protection-bot@1.0.7
+        if: always()
+        with:
+          access_token: ${{ github.token }}
+          branch: "development"
+          
       - name: checkout
         uses: actions/checkout@v3
+        
       - name: merge
         uses: mtanzi/action-automerge@v1
         id: merge
@@ -23,3 +31,10 @@ jobs:
           github_token: ${{ github.token }}
           source: "main"
           target: "development"
+          
+      - name: Enable branch protection
+        uses: benjefferies/branch-protection-bot@1.0.7
+        if: always()
+        with:
+          access_token: ${{ github.token }}
+          branch: "development"
