@@ -3,8 +3,9 @@
 name: "Azure Boards work item state update"
 
 on:
-  push:
+  pull_request:
     branches: [ "main" ]
+    types: [closed]
 
   workflow_dispatch:
 
