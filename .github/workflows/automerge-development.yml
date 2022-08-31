@@ -10,7 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  auto-merge:  
+  auto-merge:
+    permissions: write-all
     name: Merge master into development after a PR is merged
     runs-on: ubuntu-latest
     steps:
