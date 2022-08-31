@@ -1,0 +1,25 @@
+# This is a workflow that updates an Azure Boards work item when a branch is merged
+
+name: "Azure Boards work item state update"
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    name: Work item state update workflow
+    steps:       
+    - uses: CanarysAutomations/pr-update-work-item-state@v1.4
+      env: 
+        gh_token : '${{ secrets.GH_PAT }}'   
+        ado_token: '${{ secrets.ADO_PAT }}'
+        ado_organization: '${{ secrets.ADO_ORGANIZATION }}'
+        ado_project: '${{ secrets.ADO_PROJECT }}'
+        closedstate: 'closed'
+        gh_repo_owner: ''
+        gh_repo: 'azure-and-github-ci-cd-poc'
+        pull_number: '${{github.event.number}}' 
