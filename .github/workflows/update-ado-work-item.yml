@@ -14,14 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Work item state update workflow
     steps:
-    - name: closed
-      uses: CanarysAutomations/pr-update-work-item-state@v1.4
+    - uses: CanarysAutomations/pr-update-work-item-state@v1.4
       env: 
-        gh_token : ${{ secrets.GH_PAT }}   
-        ado_token: ${{ secrets.ADO_PAT }}
-        ado_organization: ${{ secrets.ADO_ORGANIZATION }}
-        ado_project: ${{ secrets.ADO_PROJECT }}
+        gh_token : '${{ secrets.GH_PAT }}'   
+        ado_token: '${{ secrets.ADO_PAT }}'
+        ado_organization: '${{ secrets.ADO_ORGANIZATION }}'
+        ado_project: '${{ secrets.ADO_PROJECT }}'
         closedstate: 'closed'
         gh_repo_owner: 'edms-devteam-z1'
         gh_repo: 'azure-and-github-ci-cd-poc'
-        pull_number: ${{github.event.number}} 
+        pull_number: '${{github.event.number}}' 
