@@ -4,8 +4,10 @@ name: "Azure Boards work item state update"
 
 on:
   pull_request:
-    branches: [ "main" ]
-    types: [closed]
+    branches: [main]
+    types: [opened, closed, edited]
+  push:
+    branches: [main]
 
   workflow_dispatch:
 
@@ -14,13 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Work item state update workflow
     steps:
-    - uses: CanarysAutomations/pr-update-work-item-state@v1.4
+    - uses: MarcinGadomski94/pr-update-work-item-state@master
       env: 
         gh_token : '${{ secrets.GH_PAT }}'   
         ado_token: '${{ secrets.ADO_PAT }}'
         ado_organization: '${{ secrets.ADO_ORGANIZATION }}'
         ado_project: '${{ secrets.ADO_PROJECT }}'
-        closedstate: 'closed'
-        gh_repo_owner: 'edms-devteam-z1'
-        gh_repo: 'azure-and-github-ci-cd-poc'
+        closedstate: 'Closed'
+        inprogressstate: 'Active' 
+        propenstate: 'Resolved'
+        ghrepo_owner: 'edms-devteam-z1'
+        ghrepo: 'azure-and-github-ci-cd-poc'
         pull_number: '${{github.event.number}}' 
+        branch_name: ${{ github.ref }}
