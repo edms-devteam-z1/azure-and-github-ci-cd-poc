@@ -4,26 +4,26 @@ name: "Azure Boards work item state update"
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, development]
     types: [opened, closed, edited]
   push:
-    branches: [main]
+    branches: [main, development]
 
 jobs:
   alert:
     runs-on: ubuntu-latest
     name: Work item state update workflow
     steps:
-    - uses: sigglep/pr-update-work-item-state@master
-      env: 
-        gh_token : '${{ secrets.GH_PAT }}'   
-        ado_token: '${{ secrets.ADO_PAT }}'
-        ado_organization: '${{ secrets.ADO_ORGANIZATION }}'
-        ado_project: '${{ secrets.ADO_PROJECT }}'
-        closedstate: 'Closed'
-        inprogressstate: 'Active' 
-        propenstate: 'Resolved'
-        ghrepo_owner: 'edms-devteam-z1'
-        ghrepo: 'azure-and-github-ci-cd-poc'
-        pull_number: '${{github.event.number}}' 
-        branch_name: '${{github.ref}}'
+      - uses: sigglep/pr-update-work-item-state@master
+        env:
+          gh_token: "${{ secrets.GH_PAT }}"
+          ado_token: "${{ secrets.ADO_PAT }}"
+          ado_organization: "${{ secrets.ADO_ORGANIZATION }}"
+          ado_project: "${{ secrets.ADO_PROJECT }}"
+          closedstate: "Closed"
+          inprogressstate: "Active"
+          propenstate: "Resolved"
+          ghrepo_owner: "edms-devteam-z1"
+          ghrepo: "azure-and-github-ci-cd-poc"
+          pull_number: "${{github.event.number}}"
+          branch_name: "${{github.ref}}"
