@@ -26,4 +26,4 @@ jobs:
           ghrepo_owner: "edms-devteam-z1"
           ghrepo: "azure-and-github-ci-cd-poc"
           pull_number: "${{github.event.number}}"
-          branch_name: "${{github.ref}}"
+          branch_name: " ${{github.ref}} "
