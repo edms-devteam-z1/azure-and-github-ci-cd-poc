@@ -9,14 +9,12 @@ on:
   push:
     branches: [master]
 
-  workflow_dispatch:
-
 jobs:
   alert:
     runs-on: ubuntu-latest
     name: Work item state update workflow
     steps:
-    - uses: MarcinGadomski94/pr-update-work-item-state@master
+    - uses: sigglep/pr-update-work-item-state@master
       env: 
         gh_token : '${{ secrets.GH_PAT }}'   
         ado_token: '${{ secrets.ADO_PAT }}'
