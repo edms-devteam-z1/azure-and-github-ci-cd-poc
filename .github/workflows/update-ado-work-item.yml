@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Work item state update workflow
     steps:
-      - uses: jlugaro/update-ab-workitem@main
+      - uses: jlugaro/pr-update-work-item-state@master
         env:
           gh_token: "${{ secrets.GH_PAT }}"
           ado_token: "${{ secrets.ADO_PAT }}"
