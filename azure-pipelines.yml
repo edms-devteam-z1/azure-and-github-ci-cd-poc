@@ -5,6 +5,8 @@
 
 trigger:
 - development-devop-poc
+- pre-release-devop-poc
+- main-release-devop-poc
 
 pool:
   vmImage: 'windows-latest'
