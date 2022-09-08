@@ -16,14 +16,14 @@ jobs:
     steps:
       - uses: jlugaro/update-ab-workitem@main
         env:
-          gh_token: "${{ secrets.GH_PAT }}"
           ado_token: "${{ secrets.ADO_PAT }}"
           ado_organization: "${{ secrets.ADO_ORGANIZATION }}"
           ado_project: "${{ secrets.ADO_PROJECT }}"
+          gh_token: "${{ secrets.GH_PAT }}"
+          gh_repo_owner: "edms-devteam-z1"
+          gh_repo: "azure-and-github-ci-cd-poc"
+          pull_number: "${{github.event.number}}"
+          branch_name: " ${{github.ref}} "
           closedstate: "Closed"
           inprogressstate: "Active"
           propenstate: "Resolved"
-          ghrepo_owner: "edms-devteam-z1"
-          ghrepo: "azure-and-github-ci-cd-poc"
-          pull_number: "${{github.event.number}}"
-          branch_name: " ${{github.ref}} "
