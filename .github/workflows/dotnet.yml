@@ -2,30 +2,38 @@ name: .NET build and test
 
 on:
   push:
-    branches: [ "main",  "development" ]
+    branches: [ "main-devop-poc",  "development-devop-poc" ]
   pull_request:
-    branches: [ "main", "development" ]
+    branches: [ "main-devop-poc", "development-devop-poc" ]
     
 env:
   DOTNET_VERSION: '6.0.x'
 
 jobs:
   build:
-    name: build-and-test-window-latest
+    name: build-and-test
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: ${{env.DOTNET_VERSION}}
+      - uses: actions/checkout@v2
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+      
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
+      
+      - name: Setup VSTest
+        uses: darenm/Setup-VSTest@v1
+      
+      - name: Navigate to Workspace
+        run : cd $GITHUB_WORKSPACE
+
+      - name: Restore Packages
+        run: nuget restore 
+
+      - name: Build Solution
+        run: msbuild.exe  /p:platform="Any CPU" /p:configuration="Release"
         
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-      
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      #- name: Run Tests
+      #  run: vstest.console.exe 
