@@ -4,24 +4,30 @@ name: "Azure Boards work item state update"
 
 on:
   pull_request:
-    branches: [ "main" ]
-    types: [closed]
-
-  workflow_dispatch:
+    branches: [main, development]
+    types: [opened, closed, edited]
+  push:
+    branches: [main, development]
 
 jobs:
   alert:
     runs-on: ubuntu-latest
     name: Work item state update workflow
     steps:
-    - name: closed
-      uses: CanarysAutomations/pr-update-work-item-state@v1.4
-      env: 
-        gh_token : ${{ secrets.GH_PAT }}   
-        ado_token: ${{ secrets.ADO_PAT }}
-        ado_organization: ${{ secrets.ADO_ORGANIZATION }}
-        ado_project: ${{ secrets.ADO_PROJECT }}
-        closedstate: 'closed'
-        gh_repo_owner: 'edms-devteam-z1'
-        gh_repo: 'azure-and-github-ci-cd-poc'
-        pull_number: ${{github.event.number}} 
+      - uses: jlugaro/update-ab-workitem@main
+        env:
+          ado_token: "${{ secrets.ADO_PAT }}"
+          ado_organization: "${{ secrets.ADO_ORGANIZATION }}"
+          ado_project: "${{ secrets.ADO_PROJECT }}"
+          gh_token: "${{ secrets.GH_PAT }}"
+          gh_repo_owner: "edms-devteam-z1"
+          gh_repo: "azure-and-github-ci-cd-poc"
+          pull_number: "${{github.event.number}}"
+          branch_name: " ${{github.ref}} "
+          inprogress_state: "Development"
+          pr_open_dev_state: "Development"
+          pr_closed_dev_state: "In Review"
+          pr_open_staging_state: "In Review"
+          pr_closed_staging_state: "Staging"
+          pr_open_main_state: "Staging"
+          pr_closed_main_state: "Closed"
