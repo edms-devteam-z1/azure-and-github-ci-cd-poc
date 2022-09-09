@@ -8,6 +8,11 @@ trigger:
 - Pre-Release
 - main
 
+- pr: 
+- development
+- Pre-Release
+- main
+
 pool:
   vmImage: 'windows-latest'
 
