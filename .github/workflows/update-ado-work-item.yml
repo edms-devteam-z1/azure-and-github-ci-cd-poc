@@ -28,6 +28,6 @@ jobs:
           pr_open_dev_state: "Development"
           pr_closed_dev_state: "In Review"
           pr_open_staging_state: "In Review"
-          pr_closed_staging_state: "Staging"
+          pr_closed_staging_state: "Merged"
           pr_open_main_state: "Staging"
           pr_closed_main_state: "Closed"
