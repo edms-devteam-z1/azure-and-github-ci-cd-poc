@@ -4,9 +4,14 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
 trigger:
-- development-devop-poc
-- pre-release-devop-poc
-- main-devop-poc
+- development
+- Pre-Release
+- main
+
+pr: 
+- development
+- Pre-Release
+- main
 
 pool:
   vmImage: 'windows-latest'

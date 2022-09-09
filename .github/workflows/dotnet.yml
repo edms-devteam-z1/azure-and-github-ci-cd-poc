@@ -2,13 +2,13 @@ name: .NET build and test
 
 on:
   push:
-    branches: [ "main-devop-poc",  "development-devop-poc" ]
+    branches: [ "main",  "development" ]
   pull_request:
-    branches: [ "main-devop-poc", "development-devop-poc" ]
+    branches: [ "main", "development" ]
 
 jobs:
   build:
-    name: build-and-test
+    name: build-and-test-window-latest
     runs-on: windows-latest
 
     steps:
