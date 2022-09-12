@@ -45,7 +45,7 @@ steps:
  - task: PublishBuildArtifacts@1
    inputs:
      pathToPublish: '$(Build.ArtifactStagingDirectory)'
-     artifactName: web-app-artifact
+     artifactName: 'web-app-artifact'
  
  # Make artifacts available
  # Approach 1: downloadable artifact in Azure DevOps
