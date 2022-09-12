@@ -43,9 +43,9 @@ steps:
     
  # Publish artifacts
  - task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: '$(artifactName)'
+   inputs:
+     pathToPublish: '$(Build.ArtifactStagingDirectory)'
+     artifactName: '$(artifactName)'
  
  # Make artifacts available
  # Approach 1: downloadable artifact in Azure DevOps
