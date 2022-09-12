@@ -20,6 +20,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  artifactName: 'web-app-artifact'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -40,6 +41,11 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     
+ # Publish artifacts
+ - task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: '$(artifactName)'
  
  # Make artifacts available
  # Approach 1: downloadable artifact in Azure DevOps
@@ -49,6 +55,6 @@ steps:
   inputs:
     buildType: 'current'
     downloadType: 'single'
-    artifactName: 'web-app-artifact'
+    artifactName: '$(artifactName)'
     downloadPath: '$(System.ArtifactsDirectory)'
     
