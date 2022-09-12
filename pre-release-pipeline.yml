@@ -4,14 +4,10 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
 trigger:
-- development
 - Pre-Release
-- main
 
 pr: 
-- development
 - Pre-Release
-- main
 
 pool:
   vmImage: 'windows-latest'
@@ -20,6 +16,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  artifactName: 'web-app-artifact-pre-release'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -39,3 +36,21 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    
+ # Publish artifacts
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: '$(artifactName)'
+ 
+ # Make artifacts available
+ # Approach 1: downloadable artifact in Azure DevOps
+- powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
+
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: '$(artifactName)'
+    downloadPath: '$(System.ArtifactsDirectory)'
+    
