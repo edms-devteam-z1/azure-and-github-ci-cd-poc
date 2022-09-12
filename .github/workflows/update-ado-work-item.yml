@@ -8,6 +8,8 @@ on:
     types: [opened, closed, edited]
   push:
     branches: [main, Pre-Release, development]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
 
 jobs:
   alert:
