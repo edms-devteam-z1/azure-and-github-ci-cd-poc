@@ -39,3 +39,16 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    
+ 
+ # Make artifacts available
+ # Approach 1: downloadable artifact in Azure DevOps
+- powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
+
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'web-app-artifact'
+    downloadPath: '$(System.ArtifactsDirectory)'
+    
