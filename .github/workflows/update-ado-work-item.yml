@@ -8,6 +8,8 @@ on:
     types: [opened, closed, edited]
   push:
     branches: [main, Pre-Release, development]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
 
 jobs:
   alert:
@@ -23,11 +25,12 @@ jobs:
           gh_repo_owner: "edms-devteam-z1"
           gh_repo: "azure-and-github-ci-cd-poc"
           pull_number: "${{github.event.number}}"
-          branch_name: " ${{github.ref}} "
-          inprogress_state: "Development"
-          pr_open_dev_state: "Development"
-          pr_closed_dev_state: "In Review"
-          pr_open_staging_state: "In Review"
-          pr_closed_staging_state: "Merged"
-          pr_open_main_state: "Staging"
-          pr_closed_main_state: "Closed"
+          current_branch_name: " ${{github.ref}} "
+          dev_branch_name: "development"
+          staging_branch_name: "Pre-Release"
+          main_branch_name: "main"
+          in_progress_state: "Development"
+          in_review_state: "In Review"
+          merged_state: "Merged"
+          staging_state: "Staging"
+          closed_state: "Closed"
