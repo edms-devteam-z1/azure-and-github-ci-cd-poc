@@ -7,7 +7,7 @@ on:
     branches: [main, Pre-Release, development]
     types: [opened, closed, edited]
   push:
-    branches: [main, Pre-Release, development]
+    branches: [development, AB#**]
   pull_request_review:
     types: [submitted, edited, dismissed]
 
