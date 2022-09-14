@@ -3,10 +3,6 @@
 name: "Azure Boards work item state update"
 
 on:
-  push:
-    branches: 
-      - "development" 
-      - "AB#**"
   pull_request:
     branches:
       - "development"
@@ -16,6 +12,10 @@ on:
       - "opened"
       - "closed"
       - "edited"
+  push:
+    branches: 
+      - "development" 
+      - "AB#**"
   pull_request_review:
     types: 
       - "submitted"
