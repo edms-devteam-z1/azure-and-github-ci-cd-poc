@@ -25,9 +25,17 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         
-      - name: merge
+      - name: merge pre-release
         uses: mtanzi/action-automerge@v1
-        id: merge
+        id: merge-pre-release
+        with:
+          github_token: ${{ secrets.EDMS_AUTOMERGE_TOKEN }}
+          source: "main"
+          target: "Pre-Release"
+          
+      - name: merge development
+        uses: mtanzi/action-automerge@v1
+        id: merge-development
         with:
           github_token: ${{ secrets.EDMS_AUTOMERGE_TOKEN }}
           source: "main"
