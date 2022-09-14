@@ -4,7 +4,7 @@ name: "Azure Boards work item state update"
 
 on:
   pull_request:
-    branches: [main, Pre-Release, development]
+    branches: [main, Pre-Release]
     types: [opened, closed, edited]
   push:
     branches: [development, AB#**]
