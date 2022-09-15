@@ -16,33 +16,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Temporarily disable branch protection
-        uses: benjefferies/branch-protection-bot@1.0.7
+        uses: ./.github/workflows/branch-protection
         if: always()
         with:
           access_token: ${{ secrets.EDMS_AUTOMERGE_TOKEN }}
           branch: "development"
-          
+
       - name: checkout
         uses: actions/checkout@v3
-        
+
       - name: merge pre-release
-        uses: mtanzi/action-automerge@v1
+        uses: ./.github/workflows/auto-merge
         id: merge-pre-release
         with:
           github_token: ${{ secrets.EDMS_AUTOMERGE_TOKEN }}
           source: "main"
           target: "Pre-Release"
-          
+
       - name: merge development
-        uses: mtanzi/action-automerge@v1
+        uses: ./.github/workflows/auto-merge
         id: merge-development
         with:
           github_token: ${{ secrets.EDMS_AUTOMERGE_TOKEN }}
           source: "main"
           target: "development"
-          
+
       - name: Enable branch protection
-        uses: benjefferies/branch-protection-bot@1.0.7
+        uses: ./.github/workflows/branch-protection
         if: always()
         with:
           access_token: ${{ secrets.EDMS_AUTOMERGE_TOKEN }}
