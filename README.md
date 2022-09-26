@@ -6,6 +6,4 @@
 
 Azure DevOps and GitHub CI &amp; CD integration proof of concept
 
-1
-
-2
+change
