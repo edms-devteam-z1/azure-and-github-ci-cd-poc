@@ -18,13 +18,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: Temporarily disable branch protection
-        uses: ./.github/workflows/branch-protection
-        if: always()
-        with:
-          access_token: ${{ secrets.EDMS_AUTOMERGE_TOKEN }}
-          branch: "development"
-
       - name: merge pre-release
         uses: ./.github/workflows/auto-merge
         id: merge-pre-release
@@ -40,10 +33,3 @@ jobs:
           github_token: ${{ secrets.EDMS_AUTOMERGE_TOKEN }}
           source: "main"
           target: "development"
-
-      - name: Enable branch protection
-        uses: ./.github/workflows/branch-protection
-        if: always()
-        with:
-          access_token: ${{ secrets.EDMS_AUTOMERGE_TOKEN }}
-          branch: "development"
