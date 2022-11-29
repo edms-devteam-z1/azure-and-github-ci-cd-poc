@@ -6,7 +6,7 @@ on:
   pull_request:
     branches:
       - "development"
-      - "experimental/onPush_and_onPull_event"
+      - "experimental/onPush_and_onPull_events"
 
     types: 
       - "opened"
@@ -17,7 +17,7 @@ on:
       - "AB#**"
       - "main"
       - "Pre-Release"
-      - "experimental/onPush_and_onPull_event"
+      - "experimental/onPush_and_onPull_events"
   pull_request_review:
     types: 
       - "submitted"
