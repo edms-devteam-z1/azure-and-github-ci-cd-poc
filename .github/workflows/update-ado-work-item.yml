@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Work item state update workflow
     steps:
-      - uses: jlugaro/update-ab-workitem@main
+      - uses: jlugaro/update-ab-workitem@sempjc/on_events_options
         env:
           ado_token: "${{ secrets.ADO_PAT }}"
           ado_organization: "${{ secrets.ADO_ORGANIZATION }}"
@@ -49,3 +49,5 @@ jobs:
           rejected_state: "Rejected"
           staging_state: "Staging"
           closed_state: "Closed"
+          onPushEvent: "Staging"
+          onPullRequestEvent: "Closed"
