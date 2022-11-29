@@ -6,4 +6,4 @@
 
 Azure DevOps and GitHub CI &amp; CD integration proof of concept
 
-1256234kjhk
+1256234
