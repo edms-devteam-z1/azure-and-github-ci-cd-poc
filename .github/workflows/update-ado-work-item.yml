@@ -6,7 +6,6 @@ on:
   pull_request:
     branches:
       - "development"
-      - "experimental/onPush_and_onPull_events"
 
     types: 
       - "opened"
@@ -17,7 +16,7 @@ on:
       - "AB#**"
       - "main"
       - "Pre-Release"
-      - "experimental/onPush_and_onPull_events"
+      
   pull_request_review:
     types: 
       - "submitted"
@@ -29,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Work item state update workflow
     steps:
-      - uses: jlugaro/update-ab-workitem@sempjc/on_events_options
+      - uses: jlugaro/update-ab-workitem@main
         env:
           ado_token: "${{ secrets.ADO_PAT }}"
           ado_organization: "${{ secrets.ADO_ORGANIZATION }}"
