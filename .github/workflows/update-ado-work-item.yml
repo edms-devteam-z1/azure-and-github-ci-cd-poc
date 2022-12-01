@@ -6,6 +6,7 @@ on:
   pull_request:
     branches:
       - "development"
+      - sempjc/onPush_and_onPull_events
 
     types: 
       - "opened"
