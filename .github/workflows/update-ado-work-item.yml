@@ -52,5 +52,5 @@ jobs:
 #           staging_state: "Staging"
 #           closed_state: "Closed"
           on_push_event: "Staging"
-          on_pull_request: "Closed"
+          on_pull_request_event: "Closed"
           
